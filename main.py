@@ -9,7 +9,8 @@ pytesseract.pytesseract.tesseract_cmd = r'D:\Tesseract-OCR\tesseract'
 img_cv = cv2.imread(r'C:\Users\chama\Desktop\Capture.png')
 
 img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
-
+# cv2.imshow("i", img_rgb)
+# cv2.waitKey()
 t = pytesseract.image_to_string(img_rgb, lang='sin')
 
 print(t)
@@ -34,6 +35,13 @@ def sanitize_str(s):
     control_chars = "\x00-\x1f\x7f-\x9f"
     control_char_re = re.compile("[%s]" % control_chars)
     return control_char_re.sub("", s)
+
+from docx.shared import Pt
+
+style = document.styles['Normal']
+font = style.font
+font.name = 'FMBindumathi'
+font.size = Pt(10)
 
 document.add_paragraph(sanitize_str(t))
 
