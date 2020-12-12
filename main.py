@@ -13,6 +13,10 @@ img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
 # cv2.waitKey()
 t = pytesseract.image_to_string(img_rgb, lang='sin')
 
+pdf = pytesseract.image_to_pdf_or_hocr(img_rgb, lang='sin', extension='pdf')
+with open('test.pdf', 'w+b') as f:
+    f.write(pdf)
+
 print(t)
 # text_file = open("Output.txt", "w")
 # print(t, file=text_file)
@@ -40,7 +44,7 @@ from docx.shared import Pt
 
 style = document.styles['Normal']
 font = style.font
-font.name = 'FMBindumathi'
+font.name = 'Iskoola Pota'
 font.size = Pt(10)
 
 document.add_paragraph(sanitize_str(t))
